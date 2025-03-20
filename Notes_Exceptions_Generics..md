@@ -1,4 +1,4 @@
-# ⚡ Jceptions 
+# ⚡ Xceptions 
 
 ## 🔹 Exception Hierarchy  
 - **`Throwable`** → Parent of all exceptions & errors  
@@ -16,14 +16,56 @@
 - finally always executes, even if return in try
 - Nested try inside finally → Handle errors in cleanup (e.g., closing files)
 - **Alternative**: Try-With-Resources (Auto-Close); Works for objects implementing AutoCloseable (close() method required)
-```
+```java
  try (FileInputStream fis = new FileInputStream("file.txt")) { ... }
 // Auto-closes `fis` after block  
 ```
 ## 🔹 Custom Exceptions
 - Create in separate package
 - Extend Exception (checked) or RuntimeException (unchecked)
-```
+```java
 class MyException extends Exception { ... }
 ```
+# ⚡ Generics 
 
+## Use Wrappers?  
+- **Use `Integer` (wrapper) instead of `int` (primitive)**  
+- **Compile-time:** Everything is treated as `Object`   **Runtime:** Cast back to `Integer`, avoiding primitive limitations  
+
+## 🔹 Syntax  
+- **Class Generics**  
+  ```java
+  class Box<T> { T value; }
+  ```
+- **Method Generics (<> before return type!)**
+```java
+class Util {
+    static <T> void print(T item) { System.out.println(item); }
+}
+```
+## 🔹 Wildcards & Bounds
+- Unbounded (?) → Accepts any type
+- Upper Bound (extends) → T must be a subclass of B
+- Lower Bound (super) → T must be a superclass of B
+```java
+void add(List<? super Integer> list) { list.add(10); }
+```
+- read more on wildcare usage vs strongly typed generics, can't really memorize this without having used them
+  
+# ⚡ J8 new stuff
+
+🔹 **Functional Interface** → **Only 1 abstract method**  
+   - Used with **lambda expressions**  
+   - `@FunctionalInterface` annotation (optional, for clarity)  
+   - ✅**Can have `default` methods** (concrete, multiple allowed)  **Regular interfaces** → ❌ **Cannot** have `default` methods 
+
+🔥 **Built-in Functional Interfaces**  
+   - `Consumer<T>` → Takes `T`, returns nothing (`accept(T)`)  
+   - `Supplier<T>` → Takes nothing, returns `T` (`get()`)  
+   - `Predicate<T>` → Takes `T`, returns `boolean` (`test(T)`)  
+   - `Function<T, R>` → Takes `T`, returns `R` (`apply(T)`)  
+
+ 
+
+
+  
