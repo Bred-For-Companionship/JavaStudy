@@ -63,7 +63,25 @@ void add(List<? super Integer> list) { list.add(10); }
    - `Consumer<T>` → Takes `T`, returns nothing (`accept(T)`)  
    - `Supplier<T>` → Takes nothing, returns `T` (`get()`)  
    - `Predicate<T>` → Takes `T`, returns `boolean` (`test(T)`)  
-   - `Function<T, R>` → Takes `T`, returns `R` (`apply(T)`)  
+   - `Function<T, R>` → Takes `T`, returns `R` (`apply(T)`)
+   - -bi predicate takes 2 arguments, as does bi function
+   - 
+ **`Optional<T>` (Avoid `null`)**  
+
+✅ **Wrap possible `null` values** → Prevents `NullPointerException`  
+   - `Optional.of(T)` → Throws if `T` is `null`  
+   - `Optional.ofNullable(T)` → ✅ Allows `null`  
+
+✅ **Extracting Values**  
+   - `.orElse(defaultValue)` → Returns value or default  
+   - `.orElseGet(() -> value)` → Uses supplier if empty  
+   - `.orElseThrow(() -> new Exception())` → Throws if empty  
+
+✅ **Example**  
+```java
+Optional<String> opt = Optional.ofNullable(null);
+System.out.println(opt.orElse("Default")); // Output: Default  
+
 
  
 
