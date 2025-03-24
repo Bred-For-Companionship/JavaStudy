@@ -62,7 +62,9 @@ ExecutorService pool = Executors.newFixedThreadPool(2);
 pool.submit(() -> System.out.println("ThreadPool running"));
 pool.shutdown();
 ```
-![image](https://github.com/user-attachments/assets/85ed171b-579d-4c25-9be4-d8e78c743197)
+![image](https://github.com/user-attachments/assets/8d316374-8e99-4522-8f0e-cb1f44ac35be)
 
+
+default threadpools: newFixedThreadPool, newSingleThreadPool, newCachedThreadPool
 
 
