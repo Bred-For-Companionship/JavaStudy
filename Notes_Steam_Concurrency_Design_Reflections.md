@@ -92,4 +92,26 @@ CompletableFuture<Integer> cf = CompletableFuture
 System.out.println(cf.get()); // Output: 20
 ```
 
-140:47
+# 🔥  Design Patterns**  
+
+🔹 **Creational Patterns** (Object Creation)   🛠️
+   - **Singleton** → Only **one** instance (`private constructor + getInstance()`) - usecase- hardwawre access, logger writing to file, config file loaded into memory, threadpool
+   - 🛠️use private static final variable holding the instance and public static getter which accesses member (eagger loading); for lazy loading use private function to create class if null (not thread safe unless synchronize public getter, can synch only if null with sync block (double check locking))
+   - make sure to use if null -> lock -> if null; otherwise another thread may have already set value before you acquired lock
+   - can have instruction reorder on instance = new myinstance(); order of create instance ref, initiate new obj, point ref to obj mem; if point is ordered first, it momentarily points to nul; solution- use "volatile" keyword for member instance; 
+   - **Factory** → Subclass decides which object to create  
+   - **Prototype** → Clones objects (`implements Cloneable`)  
+
+🔹 **Structural Patterns** (Class & Object Composition)  
+   - **Decorator** → Wraps an object (`extends` or `implements` same interface)  
+   - **Static Proxy** → Proxy class manually forwards calls to real object  
+   - **Dynamic Proxy** → Uses reflection (`InvocationHandler`)  
+
+🔹 **Behavioral Patterns** (Object Communication)  
+   -  **Observer** → One object notifies multiple listeners (`addListener()`)  
+   -  **Strategy** → Selects an algorithm dynamically (`setStrategy()`)  
+   -  **Command** → Encapsulates requests as objects (`execute()`)  
+   -  **Interpreter** → Defines grammar & interprets sentences (`parse()`)  
+   -  **Iterator** → Sequentially accesses collection elements (`next()`)
+
+
