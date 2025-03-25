@@ -67,4 +67,29 @@ pool.shutdown();
 
 default threadpools: newFixedThreadPool, newSingleThreadPool, newCachedThreadPool
 
+# 🔥 CompletableFuture 
 
+✅ **Extends `Future` & `CompletionStage`**  
+   - Supports **chaining & async execution** - but using simple Futures doesn't allow chaining
+
+✅ **Creating Async Tasks**  
+   - `runAsync(Runnable, Executor)` → No return value  
+   - `supplyAsync(Supplier<T>, Executor)` → Returns `T`  -from supplier functional interface
+   - also have thenaccept (from consumer interface)
+
+✅ **Chaining Tasks**  
+   - `.thenApply(f)` → Transforms result (same thread)  
+   - `.thenApplyAsync(f)` → Transforms w/ new thread
+
+✅ **exceptions**  - .exceptionally with lambda (vanill Future can't handle excepions, can only throw)
+- .handle(value, exception) to pass callback (bifunctional interface); 
+
+✅ **Example**  
+```java
+CompletableFuture<Integer> cf = CompletableFuture
+    .supplyAsync(() -> 10)   // Async computation
+    .thenApply(x -> x * 2);  // Chain operation
+System.out.println(cf.get()); // Output: 20
+```
+
+140:47
