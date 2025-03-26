@@ -114,4 +114,25 @@ System.out.println(cf.get()); // Output: 20
    -  **Interpreter** → Defines grammar & interprets sentences (`parse()`)  
    -  **Iterator** → Sequentially accesses collection elements (`next()`)
 
+# 🔥Reflection API** (Inspect & Modify at Runtime)  
+
+🔹 **Key Methods (`Class<?> cls = obj.getClass();`)**  
+   - `cls.getName()` → Get class name  
+   - `cls.getSuperclass()` → Get parent class  
+   - `cls.getInterfaces()` → Get implemented interfaces  
+
+🔹 **Working with Methods & Fields**  
+   - `cls.getDeclaredMethods()` → All methods (public/private)  
+   - `cls.getDeclaredFields()` → All fields  
+   - `cls.getMethod("methodName", ParamTypes...)` → Get method  
+   - `method.invoke(obj, args...)` → Call method  
+
+🔹 **Creating & Modifying Objects**  
+   - `cls.newInstance()` → Create instance (Deprecated, use `getDeclaredConstructor()`)  
+   - `cls.getDeclaredConstructor().newInstance(args...)` → Create object  
+   - `field.setAccessible(true); field.set(obj, value);` → Modify private fields  
+
+🔹 **Dynamic Proxy**  
+   - `Proxy.newProxyInstance(ClassLoader, Interfaces[], InvocationHandler)` → Create dynamic proxy  
+
 
