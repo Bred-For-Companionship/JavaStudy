@@ -5,8 +5,8 @@
    - **Immutable & thread-safe**  
 
 ✅ **Two Types of Operations**  
-   - **Intermediate** → Returns a new `Stream` (chainable) - map/filter
-   - **Terminal** → Produces a result, **ends the stream**  
+   - **Intermediate** → Returns a new `Stream` (chainable) - map/filter -lazy
+   - **Terminal** → Produces a result, **ends the stream**  -eager
 
    - `.collect(Collectors.toList())` → Convert to list  
    - `.forEach(System.out::println)` → Iterate  
