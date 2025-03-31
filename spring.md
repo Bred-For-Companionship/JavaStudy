@@ -119,3 +119,77 @@ Join Point: A point in the execution flow (method execution, field access).
 
 Pointcut: Expression that defines where advice should apply (e.g., method execution or class).
 
+✅ **Example: Logging Aspect**  
+```java
+@Aspect
+@Component
+class LoggingAspect {
+
+    // Define a reusable pointcut expression
+    @Pointcut("execution(* com.example.service.*.*(..))")
+    public void serviceMethods() {}
+
+    @Before("serviceMethods()")
+    public void logBefore() {
+        System.out.println("Executing before a service method!");
+    }
+
+    @After("serviceMethods()")
+    public void logAfter() {
+        System.out.println("Executing after a service method!");
+    }
+
+    @Around("serviceMethods()")
+    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("Before execution: " + joinPoint.getSignature());
+        Object result = joinPoint.proceed();  // Execute method
+        System.out.println("After execution: " + joinPoint.getSignature());
+        return result;
+    }
+}
+```
+### 🔥**Spring Core vs Spring MVC vs Spring Boot** 
+MVC - Supports controllers (@Controller), request mappings (@RequestMapping), view resolvers, and form handling.
+Uses DispatcherServlet to handle requests.
+Spring Boot
+Simplifies Spring application development by reducing boilerplate configuration.
+
+Auto Configuration: Uses @SpringBootApplication to auto-configure dependencies.
+
+Embedded servers like Tomcat, Jetty (no need for external setup).
+
+Opinionated defaults but allows customization.
+
+Provides Spring Boot Starters (predefined dependency setups like spring-boot-starter-web).
+```java
+// Spring Core (Manual Configuration)
+ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+MyService myService = context.getBean(MyService.class);
+
+// Spring MVC (Controller Example)
+@Controller
+@RequestMapping("/hello")
+public class HelloController {
+    @GetMapping
+    public String sayHello(Model model) {
+        model.addAttribute("message", "Hello, Spring MVC!");
+        return "hello"; // Returns view "hello.jsp" or "hello.html"
+    }
+}
+
+// Spring Boot (Auto Configuration + REST API)
+@RestController
+@SpringBootApplication
+public class MySpringBootApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MySpringBootApp.class, args);
+    }
+
+    @GetMapping("/greet")
+    public String greet() {
+        return "Hello, Spring Boot!";
+    }
+}
+```
+
+1:18
